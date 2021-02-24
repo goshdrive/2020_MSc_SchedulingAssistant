@@ -1,0 +1,213 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Main Page</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" >
+    
+
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+
+    <link href="/css/admin_input.css" rel="stylesheet">
+    <link href="/css/sticky_footer.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/img/GOSH-DRIVE-Logo1.png" type="image/png" />
+    
+  </head>
+
+  <body>
+
+    
+    
+    <header>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+    </header>
+    <!-- Header -->
+     <%- include('../public/header_admin')%>
+    <br><br>
+    
+    <div class="container-fluid">
+      <div class="row">
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4">
+
+          <h2>Appointment Information</h2>
+          <div class="table-responsive my-custom-scrollbar table-wrapper-scroll-y">
+            <table class="table table-striped table-sm  ">
+              <thead>
+                <tr>
+                  <th>Patient Identifier</th>
+                  
+                  <th>clinician1 Name</th>
+                  
+                  <th>clinician2 Name</th>
+                  <th onclick="sortTable(0)">Date</th>
+                  <th>Note</th>
+                  <th>Edit</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              <script></script>
+                <% for (var i=0; i<list.length; i++){%>
+                   <!-- var month = list[i].referal_date.getMonth() +1;  -->
+                   
+                  <tr>
+                    <th><%=list[i].patient_identifier%></th>
+                   
+                    <th><%=list[i].clinician1[0].name%></th>
+                   
+                    <th><%=list[i].clinician2[0].name%></th>
+
+                    <th><%=(list[i].date.getMinutes()<10?'0':'')+list[i].date.getMinutes()+"/"+(list[i].date.getHours()<10?'0':'')+list[i].date.getHours()+"\xa0\xa0"+list[i].date.getDate()+"/"+(list[i].date.getMonth() +1)+"/"+list[i].date.getFullYear()%></th>
+                    <th> <%=list[i].note%></th>
+                    <th><a href="/admin/adminmain/appointmentedit?id=<%=list[i]._id%> ">Edit/</a><a href="/admin/adminmain/delete?id=<%=list[i]._id%> "> Delete</a></th> <!-- adding a space after %> above -->
+                    
+                      
+                    
+                  </tr>
+                
+                <%}%>
+               
+              </tbody>
+            </table>
+          </div>
+          
+          <br><br>
+          
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="lastName"></label>
+              <button  class=" form-control button" onclick="window.location.href='/admin/adminmain/generatetable'"> New Table</button>
+            </div>
+
+          </div>
+          <form name="myForm" action="/admin/adminmain/add" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="firstName">Patient Identifier</label>
+              <input type="number"  name= "patient_identifier" class="form-control purple-border" id="identifier" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid identifier is required.
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="clinician1_name">clinician1_name</label>
+              <input type="text"  name= "clinician1_name" class="form-control purple-border" id="clinician1_name" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid clinician1_name is required.
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="clinician2_name">clinician2_name</label>
+              <input type="text" name="clinician2_name" class="form-control purple-border" id="clinician2_name" placeholder="" value="" required>
+             
+            </div>
+
+           
+
+            <div class="col-md-2 mb-3">
+              <label for="clinician2_name">Note</label>
+              <input type="text" name="note" class="form-control  purple-border" id="note" placeholder="" value="" required>
+             
+            </div>
+
+            <div class="col-md-2 mb-3">
+              <label for="Date">Date</label>
+              <div class="value">
+              <input id="Date1" class="  purple-border form-control dateTime" type="text" name="date" readonly/>
+            </div>
+            </div>
+           
+
+
+            
+          </div>
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="lastName"></label>
+              <button type="submit" class=" form-control button"> Add </button>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+          </div>
+        </form>
+        </main>
+      </div>
+    </div>
+
+       <!-- Footer -->
+      <%- include('../public/footer')%>
+
+
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/bootstrap-datetimepicker.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+  
+    <script> 
+      function validateForm() {
+          var x = document.forms["myForm"]["patient_identifier"].value;
+          if (x == "") {
+            alert("Patient Identifier must be filled out");
+            return false;
+          }else if(x.length !=6){
+            alert("Patient Identifier must be a six digital number");
+            return false;
+          }
+      
+          var x = document.forms["myForm"]["clinician1_name"].value;
+          if (x == "") {
+            alert("clinician1_name must be filled out");
+            return false;
+          }
+      
+          var x = document.forms["myForm"]["clinician2_name"].value;
+          if (x == "") {
+            alert("clinician2_name must be filled out");
+            return false;
+          }
+      
+          var x = document.forms["myForm"]["date"].value;
+          if (x == "") {
+            alert("Date must be filled out");
+            return false;
+          }
+      
+      }
+      </script>
+
+
+    <script type="text/javascript">
+      $('#Date1').datetimepicker({
+          format: 'yyyy-mm-dd hh:ii',
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 0,
+          forceParse: 0
+      });
+    </script>
+  </body>
+</html>

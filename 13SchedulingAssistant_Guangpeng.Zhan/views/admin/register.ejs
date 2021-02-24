@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Admin Registration</title>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+<link href="/css/register.css" rel="stylesheet" media="all">
+<link rel="shortcut icon" href="/img/GOSH-DRIVE-Logo1.png" type="image/png" />
+</head>
+<body>
+<div class="page-wrapper bg-purple p-t-100 p-b-50">
+<div class="wrapper wrapper--w900">
+<div class="card card-6">
+<div class="card-heading">
+<h2 class="title">Admin Registration</h2>
+</div>
+<form name="myForm" action="/admin/register/doregister" method="post"   enctype="multipart/form-data" onsubmit="return validateForm()">
+<div class="card-body">
+<div class="form-row">
+<div class="name">Full name</div>
+<div class="value">
+<input class="input--style-6" type="text" name="full_name" id="full_name">
+</div>
+</div>
+<div class="form-row">
+<div class="name">Email address</div>
+<div class="value">
+<div class="input-group">
+<input class="input--style-6" type="email" name="email" placeholder="example@email.com" id="email">
+</div>
+</div>
+</div>
+<div class="form-row">
+  <div class="name">Password</div>
+  <div class="value">
+  <div class="input-group">
+  <input class="input--style-6" type="password" name="password" id="password" >
+  </div>
+  </div>
+  </div>
+  
+
+
+</div>
+<div class="card-footer">
+<button id="subbtn" type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<script> 
+
+ 
+
+function validateForm() {
+  var x = document.forms["myForm"]["full_name"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+
+  var x = document.forms["myForm"]["email"].value;
+  if (x == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+
+  var x = document.forms["myForm"]["password"].value;
+  if (x == "") {
+    alert("Passoword must be filled out");
+    return false;
+  }
+
+  
+
+
+}
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <title>Setting Page</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/offcanvas/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/setting.css" rel="stylesheet">
+    <link href="css/sticky_footer.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/GOSH-DRIVE-Logo1.png" type="image/png" />
+  </head>
+
+  <body class="bg-light">
+
+    <!-- Header -->
+    <%- include('public/header_clinician')%>
+
+   
+
+    <main role="main" class="container">
+     
+
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">User Information</h6>
+       
+        <form name="myForm" action="/profile/edit" method="get" enctype="multipart/form-data"  >
+        <div class="media text-muted pt-3">
+          <div class="col-3">
+            <img src='<%=pic%>'class="img" height="100px" width="100px">
+
+          </div>
+         
+        </div>
+      
+      <!-- 2 -->
+
+        <div class="media text-muted pt-3">
+          <div class="col-5">
+          <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Username</strong> 
+           <%=username%>
+          </p>
+        </div>
+        
+        </div>
+        <!-- row 3 -->
+        <div class="media text-muted pt-3">
+          <div class="col-5">
+          <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Email</strong>
+             <%=email%>
+          </p>
+        </div>
+        </div>
+        <!-- row 4 -->
+
+        <div class="media text-muted pt-3">
+          <div class="col-6">
+          <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">Appointment Target</strong>
+            <%=target%>
+          </p>
+        </div>
+        <div class="col-6 align-self-center">
+          <div class="text-right ">
+            <button onclick="location.href='/profile/editpassword?id=<%=id%>'" class="btn btn--radius-2 btn--blue-2 btn-setting" >Edit</button>            
+          </div>           
+        </div>
+        </div>
+      </form>
+      </div>
+
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Change Password</h6>
+        <form name="myForm" action="/profile/editpassword" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+          <input type="hidden"  name="_id" value="<%=id%>" />
+          <div class="media text-muted pt-3">
+          <div class="col-6">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Old Passowrd</strong>
+              
+            </div>
+            
+            <input type="password" name="password">
+          </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="col-6">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">New Password</strong>
+              
+            </div>
+            <input type="password" name="new_password">
+          </div>
+        </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <div class="col-6">
+          
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Confirm new password</strong> 
+            </div>
+            <input type="password" name="new_password2">
+            
+          </div>
+        </div>
+         <div class="col-6 align-self-center">
+          <div class="text-right ">
+            <button type="submit" class="btn btn--radius-2 btn--blue-2 btn-setting">Edit</button>          
+          </div>           
+        </div>
+
+        </div>
+      </form>
+        
+      </div>
+    </main>
+
+
+   
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script> 
+      function validateForm() {
+        var x = document.forms["myForm"]["password"].value;
+        if (x == "") {
+          alert("Old Password must be filled out");
+          return false;
+        }
+      
+        var x = document.forms["myForm"]["new_password"].value;
+        if (x == "") {
+          alert("New Password must be filled out");
+          return false;
+        }
+      
+        var x = document.forms["myForm"]["new_password2"].value;
+        if (x == "") {
+          alert("Please confirm your new password");
+          return false;
+        }
+      
+        
+      
+      }
+      </script>
+
+    
+  </body>
+</html>

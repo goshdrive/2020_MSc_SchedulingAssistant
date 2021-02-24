@@ -1,0 +1,125 @@
+
+ database connection search has been encapsulted
+//    MongoClient.connect(urlDB,{ useUnifiedTopology: true },function(err,client){
+       
+//       if (err){
+//         console.log(err);  
+//         return;
+//       }
+      
+
+      
+//       var db = client.db("clinicianschedule");
+//       var result =db.collection('admin').find({
+
+//         email:email,
+//         password:password
+//       });
+      
+//       //Another method to list the data admin table
+     
+//       result.toArray(function(err,data){
+//           if (err){
+//               console.log(err);
+              
+//           };
+//           console.log(data);
+
+//           if (data.length>0){
+//             console.log('login successfully');
+            
+//             //store user information
+//             session.userinfo = data[0];
+            
+//             res.redirect('/admininput');
+//         }else{
+//             console.log('fail to login');
+//             res.send("<script>alert('fail to login'); location.href='/login'</script>")
+//         }
+//          client.close();
+//       })    
+//    })
+
+
+
+
+// in header_admin.ejs
+<!-- <a class="nav-link" href="#"><%=userinfo.username%> Page</a> -->
+
+
+
+
+
+//subbtn.addEventListener("click",clickHandler);
+// console.log("line73_register.ejs");
+// emailcode.addEventListener("click", sendHandler);
+
+// function clickHandler(e){
+
+//     if (e){
+//         console.log(e);
+//     }
+
+//     console.log("line81_register.ejs");
+//     $.post("http://localhost:8010/admin/doregister",{
+
+//           username:full_name,
+//           email: email.value,
+//           password:password.value,
+//           vef_code:vef_code
+//     })
+// }
+
+// function sendHandler(e) {
+//         //   点击获取验证码后将验证码发送到后端进行比对
+//         if (e){
+//         console.log(e);
+//     }
+//         console.log(email.value);
+//         $.post("http://localhost:8010/admin/getCode", {
+//             email:email.value
+//         });
+//       }
+
+
+
+
+ <% for (var i=0; i<list.length; i++){%>
+                   <!-- var month = list[i].referal_date.getMonth() +1;  -->
+                   
+                  <tr>
+                    <th><%=list[i].identifier%></th>
+                    <th><%=list[i].referal_date.getDate()+"/"+(list[i].referal_date.getMonth() +1)+"/"+list[i].referal_date.getFullYear()%></th>
+                    <th><%=list[i].additional_note%></th>
+                    <th><a href="/admin/admininput/delete?id=<%=list[i]._id%> "> delete</a></th> <!-- adding a space after %> above -->
+                    
+                      
+                    
+                  </tr>
+                
+                <%}%>
+
+
+
+                <div class="form-row">
+    
+  <div>
+    <div class="name">Date</div>
+    <div class="value">
+    <div class="input-group">
+    <input class="input--style-6" type="datetime" name="date" value= <%=(list.date.getMinutes()<10?'0':'')+list.date.getMinutes()+"/"+(list.date.getHours()<10?'0':'')+list.date.getHours()+"\xa0\xa0"+list.date.getDate()+"/"+(list.date.getMonth() +1)+"/"+list.date.getFullYear()%> >
+    </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="form-row">
+    <div class="name">Date</div>
+    <div class="value">
+    <div class="input-group">
+      <input class="input--style-6" type="datetime" name="date" value= <%=(list.date.getMinutes()<10?'0':'')+list.date.getMinutes()+":"+(list.date.getHours()<10?'0':'')+list.date.getHours()+"\xa0\xa0"+list.date.getDate()+"/"+(list.date.getMonth() +1)+"/"+list.date.getFullYear()%> >
+    </div>
+    </div>
+  </div>

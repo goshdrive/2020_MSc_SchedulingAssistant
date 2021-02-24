@@ -1,0 +1,154 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Input Page</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+
+    <link href="/css/admin_input.css" rel="stylesheet">
+    <link href="/css/sticky_footer.css" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="/img/GOSH-DRIVE-Logo1.png" type="image/png" />
+  </head>
+
+  <body>
+
+    
+    
+    <header>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+    </header>
+      <!-- Header -->
+      <%- include('../public/header_admin')%>
+    
+    <br><br>
+    
+    <div class="container-fluid">
+      <div class="row">
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4">
+
+          <h2>Children Information</h2>
+          <div class="table-responsive my-custom-scrollbar table-wrapper-scroll-y">
+            <table class="table table-striped table-sm  ">
+              <thead>
+                <tr>
+                  <th>Digital Identifier</th>
+                  <th>Referal Date</th>
+                  <th>Additional Information</th>
+                  <th>Delete</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              <script></script>
+                <% for (var i=0; i<list.length; i++){%>
+                   <!-- var month = list[i].referal_date.getMonth() +1;  -->
+                   
+                  <tr>
+                    <th><%=list[i].identifier%></th>
+                    <th><%=list[i].referal_date.getDate()+"/"+(list[i].referal_date.getMonth() +1)+"/"+list[i].referal_date.getFullYear()%></th>
+                    <th><%=list[i].additional_note%></th>
+                    <th><a href="/admin/admininput/edit?id=<%=list[i]._id%> ">Edit/</a><a href="/admin/admininput/delete?id=<%=list[i]._id%> "> delete</a></th> <!-- adding a space after %> above -->
+                     
+                  </tr>
+                
+                <%}%>
+               
+              </tbody>
+            </table>
+          </div>
+          
+          <br><br>
+          <form name="myForm" action="/admin/admininput/add" method="post" enctype="multipart/form-data"  onsubmit="return validateForm()">
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="firstName">Digital Identifier</label>
+              <input type="number"  name= "identifier" class="form-control purple-border" id="identifier"  required>
+             
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="lastName">Referal Date</label>
+              <input type="text" name="referal_date" class="form-control purple-border dateTime" id="referal_date" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid last referal date is required.
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="lastName">Additional Note</label>
+              <input type="text" name= "additional_note" class="form-control purple-border" id="note"  value="" required>
+             
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="lastName"></label>
+              <button type="submit" class=" form-control button"> Submit</button>
+              
+            </div>
+          </div>
+        </form>
+        </main>
+      </div>
+    </div>
+
+     <!-- Footer -->
+   <%- include('../public/footer')%>
+
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/bootstrap-datetimepicker.js"></script>
+
+
+    <script> 
+      function validateForm() {
+          var x = document.forms["myForm"]["identifier"].value;
+          if (x == "") {
+            alert("Patient Identifier must be filled out");
+            return false;
+          }else if(x.length !=6){
+            alert("Patient Identifier must be a six digital number");
+            return false;
+          }
+      
+      
+          var x = document.forms["myForm"]["referal_date"].value;
+          if (x == "") {
+            alert("Referal date must be filled out");
+            return false;
+          }
+      
+      }
+      </script>
+    <script type="text/javascript">
+      $('#referal_date').datetimepicker({
+          format: 'yyyy-mm-dd hh:ii',
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 0,
+          forceParse: 0
+      });
+    </script>
+
+  </body>
+</html>

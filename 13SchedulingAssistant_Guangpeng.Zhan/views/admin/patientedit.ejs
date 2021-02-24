@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Patient Info Edit</title>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+<link href="/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" >
+
+<link href="/css/register.css" rel="stylesheet" media="all">
+
+<link rel="shortcut icon" href="/img/GOSH-DRIVE-Logo1.png" type="image/png" />
+</head>
+<body>
+<div class="page-wrapper bg-purple p-t-100 p-b-50">
+<div class="wrapper wrapper--w900">
+<div class="card card-6">
+<div class="card-heading">
+<h2 class="title">Patient Info Edit</h2>we
+</div>
+<form name="myForm" action="/admin/admininput/doedit" method="POST" enctype="multipart/form-data" onsubmit= "return validateForm()">
+<div class="card-body">
+
+<input type="hidden"  name="_id" value="<%=list[0]._id%>" />
+
+<div class="form-row">
+  <div class="name">Identifier</div>
+  <div class="value">
+  <input id="patient_identifier" class=" input--style-6 " type="number" name="identifier" value= "<%=list[0].identifier%>">
+</div>
+</div>
+
+
+<div class="form-row">
+  <div class="name">Referal Date</div>
+  <div class="value">
+  <input id="referal_date" class=" input--style-6 form-control dateTime" type="text" name="referal_date"  readonly/>
+</div>
+</div>
+  
+
+  <div class="form-row">
+    <div class="name">Note</div>
+    <div class="value">
+    <div class="input-group">
+    <input class="input--style-6" type="text" name="note" value= "<%=list[0].additional_note%>">  
+    </div>
+    </div>
+  </div>
+
+
+ 
+
+  <div class="card-footer">
+    <button type="submit"  class="btn btn--radius-2 btn--blue-2">Submit</button>
+    </div>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+<script src="/bootstrap/js/bootstrap-datetimepicker.js"></script>
+
+<script type="text/javascript">
+  $('#referal_date').datetimepicker({
+      format: 'yyyy-mm-dd hh:ii',
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      minView: 0,
+      forceParse: 0
+  });
+</script>
+
+<script> 
+function validateForm() {
+  
+        var x = document.forms["myForm"]["patient_identifier"].value;
+        
+        if (x == "") {
+          alert("Patient Identifier must be filled out");
+          return false;
+        }else if(x.length !=6){
+          alert("Patient Identifier must be a six digital number");
+          return false;
+        }
+
+        var x = document.forms["myForm"]["referal_date"].value;
+        if (x == "") {
+          alert("Please input referal date");
+          return false;
+        }
+
+        
+
+
+}
+</script>
+</body>
+</html>

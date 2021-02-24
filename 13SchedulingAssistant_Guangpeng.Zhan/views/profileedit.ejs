@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Profile Edit Page</title>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+<link href="../css/register.css" rel="stylesheet" media="all">
+<link rel="shortcut icon" href="/img/GOSH-DRIVE-Logo1.png" type="image/png" />
+</head>
+<body>
+<div class="page-wrapper bg-purple p-t-100 p-b-50">
+<div class="wrapper wrapper--w900">
+<div class="card card-6">
+<div class="card-heading">
+<h2 class="title">Profile Edit</h2>
+</div>
+<form name="myForm" action="/profile/doedit" method="POST" enctype="multipart/form-data" onsubmit= "return validateForm()">
+<div class="card-body">
+<input type="hidden"  name="_id" value="<%=list._id%>" />
+<input type="hidden" name="pic" value="<%=list.pic%>" />
+<div class="form-row">
+<div class="name">Full name</div>
+<div class="value">
+<input class="input--style-6" type="text" name="full_name" value = "<%=list.name%>">
+</div>
+</div>
+
+  <div class="form-row">
+    <div class="name">Target</div>
+    <div class="value">
+    <div class="input-group">
+    <input class="input--style-6" type="number" name="target" value="<%=list.target%>" placeholder="maximum working days per month" >
+    </div>
+    </div>
+  </div>
+
+<div class="form-row">
+<div class="name">Upload images</div>
+<div class="value">
+<div class="input-group js-input-file ">     
+<input type="file" id="inputImage" name="photo" >  
+</div>
+<div class="label--desc">Upload your images. Max file size 50 MB</div>
+</div>
+</div>
+
+</div>
+<div class="card-footer">
+<button type="submit" onclick="location.href='/profile/doedit'"  class="btn btn--radius-2 btn--blue-2">Submit</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<script> 
+function validateForm() {
+  var x = document.forms["myForm"]["full_name"].value;
+  
+  if (x == "") {
+    alert("Name must be filled out");
+    location.href='/profile/edit';
+    return false;
+  }
+
+  var x = document.forms["myForm"]["target"].value;
+  if (x == "") {
+    alert("Target must be filled out");
+    location.href='/profile/edit';
+    return false;
+  }else if (x< 0 || x>31 ){
+
+    alert("The target should be within [0,31]");
+    location.href='/profile/edit';
+    return false;
+  }
+
+
+}
+</script>
+</body>
+</html>

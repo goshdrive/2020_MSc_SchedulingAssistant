@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Note Edit</title>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+<link href="/css/register.css" rel="stylesheet" media="all">
+<link rel="shortcut icon" href="/img/GOSH-DRIVE-Logo1.png" type="image/png" />
+</head>
+<body>
+<div class="page-wrapper bg-purple p-t-100 p-b-50">
+<div class="wrapper wrapper--w900">
+<div class="card card-6">
+<div class="card-heading">
+<h2 class="title">Appointment Note Edit</h2>
+</div>
+<form name="myForm" action="/mainpage/addnote/doaddnote" method="POST" enctype="multipart/form-data" >
+<div class="card-body">
+
+  <input type="hidden"  name="_id" value="<%=list[0]._id%>" />
+  <input type="hidden"  name="clinician1_id" value="<%=list[0].clinician1_id%>" />
+  <input type="hidden"  name="clinician1_name" value="<%=list[0].clinician1[0].name%>" />
+  <input type="hidden"  name="clinician2_id" value="<%=list[0].clinician2_id%>" />
+  <input type="hidden"  name="clinician2_name" value="<%=list[0].clinician2[0].name%>" />
+  <input type="hidden"  name="date" value="<%=list[0].date%>" />
+
+
+
+
+<div class="form-row">
+<div class="name">Note</div>
+<div class="value">
+<input class="input--style-6" type="text" name="note" value="<%=list[0].note%>">
+</div>
+</div>
+
+
+
+
+</div>
+<div class="card-footer">
+<button type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>
